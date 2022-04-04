@@ -1,0 +1,47 @@
+void SPRINTF(char* szBuffer, char* szPattern, char** args) {
+    char buff[300];
+    int i = 0;
+    int n = 0;
+
+    int arg1 = strlen(*(*(args)+1));
+    int arg2 = strlen(*(*(args)+2));
+
+	
+    while(*(szPattern+i) != NULL) {
+
+        if(*(szPattern + i) == '%') {
+
+            if(*(szPattern + 1) == 's') {
+
+                for(int j = 0; j < i; j++) {
+                    buff[j] = *(szPattern + j);
+                        if(n == 0) {
+                    for (int k = 0; k < arg1; k++) {
+                        buff[j+k] = *(szPattern + j + k);
+                        i+=arg1;
+                        n = 1;
+		
+                    }
+                        } else {
+                            for (int p = 0; p < arg2; p++) {
+                        buff[j+p] = *(szPattern + j + p);
+                        i+=arg2;
+				
+                        }
+                        }
+                }
+
+            } else {
+                 i+=2;
+                continue;
+            }
+        }
+
+        i++;
+    }
+	buff[i+1] = '\0';
+	for (int j = 0; j < i; j++ {
+	*(szBuffer + j) = buff[j];
+}
+
+}

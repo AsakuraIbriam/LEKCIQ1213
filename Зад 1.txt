@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+unsigned char CheckBit(unsigned int uValue) {
+        return (uValue&1) > 0 ? '1' : '0';
+}
+int main(){
+
+
+    unsigned int number;
+
+    printf("Enter number: ");
+    scanf("%u", &number);
+
+
+
+    if(CheckBit(number) == '1') {
+        printf("Ox01");
+    } else {
+        printf("0x00");
+    }
+
+
+    return 0;
+}

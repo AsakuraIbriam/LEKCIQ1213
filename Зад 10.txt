@@ -1,0 +1,30 @@
+class cWindow {
+
+    int Left;
+    int Right;
+    int Top;
+    int Bottom;
+
+    cWindow(int left, int right, int top, int bottom) {
+        this->Left = left;
+        this->Right = right;
+        this->Top = top;
+        this->Bottom = bottom;
+    }
+
+};
+
+class cHint :public cWindow {
+    tString sCaption;
+    cHint(int left, int right, int top, int bottom, tString scaption) :cWindow(left, right, top, bottom) {
+        this.sCaption = scaption;
+    }
+};
+
+class cBitButton :public cWindow {
+    tBitmap aBitmap;
+    cBitButton(int left, int right, int top, int bottom, tString scaption, tBitmap abitmap) :cWindow(left, right, botton, scaption) {
+        this.aBitmap = abitmap;
+    }
+
+};

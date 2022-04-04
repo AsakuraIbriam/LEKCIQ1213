@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+
+void Add(const char* p1, const char* p2, char* result) {
+
+    int n1 = atoi(p1);
+
+    int n2 = atoi(p2);
+
+    n1 = n1 + n2;
+
+
+    sprintf(result, "%d", n1);
+}
+
+
+int main()
+{
+    char *c = "123";
+    char *b = "123";
+    char buff[1000];
+    Add(c, b, buff);
+    printf("%s", buff);
+
+return 0;
+  }
+

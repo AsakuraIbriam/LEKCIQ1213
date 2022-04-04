@@ -1,0 +1,55 @@
+ude <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+void VMirror(unsigned char *pImage){
+
+    
+    char c = *pImage;
+    int i = 0;
+    int n = 8;
+    int d[8];
+    while( n > 0) {
+
+        d[i] = c % 2;
+        c = c / 2;
+
+        n--;
+        i++;
+    }
+
+    unsigned char pow = 1;
+    c = 0;
+
+    for (int i = 7; i >= 0; i--, pow *= 2)
+    {
+        c += pow * d[i];
+    }
+
+    *pImage = c;
+
+}
+
+
+int main(){
+
+
+
+
+
+   unsigned char image[8] = {0x7F,0x40,0x40,0x40,0x7F,0x00,0x00, 0x00};
+
+
+    for(int i = 0; i < 8; i++) {
+
+       VMirror(image+i);
+       printf("0x0%x ", *(image+i));
+    }
+
+
+
+
+
+    return 0;
+}

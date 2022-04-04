@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+
+#define MAX_SIZE 3
+
+
+
+int check_full(int,int);
+int check_empty(int,int);
+int insert(int [],int *,int *);
+int del(int [],int *,int *);
+void display(int [],int,int);
+
+
+int main()
+{
+  int ring_buffer[MAX_SIZE],choice,num;
+  int head=-1;
+  int tail=-1;
+  do
+  {
+
+     printf("\n\nMENUS : ");
+     printf("\n\t1. INSERT ELEMENT ");
+     printf("\n\t2. DELETE ELEMENT");
+     printf("\n\t3. DISPLAY\n\t4. EXIT");
+     printf("\nENTER YOUR CHOICE : ");
+        scanf("%d",&choice);
+
+    switch(choice)
+    {
+      case 1:
+        if(!check_full(head,tail))
+        {
+          num=insert(ring_buffer,&head,&tail);
+          printf("%Insert element: ");
+          scanf("%d", &num);
+        }
+        else
+          printf("NO SPACE");
+        break;
+      case 2:
+        if(!check_empty(head,tail))
+        {
+          num=del(ring_buffer,&head,&tail);
+          printf("Deleted element");
+        }
+        else
+          printf("Ring buffer is empty");
+        break;
+      case 3:
+        display(ring_buffer,head,tail);
+        break;
+      case 4:
+        printf("Bye bye");
+        break;
+      default:
+        printf("Please enter valid option");
+    }
+  }while(choice!=4);
+}
+int check_full(int h,int t)
+{
+  if(h==(t+1)%MAX_SIZE)
+    return 1;
+  else
+    return 0;
+}
+int check_empty(int h,int t)
+{
+  if(h==-1 && t==-1)
+    return 1;
+  else
+    return 0;
+}
+int insert(int buffer[],int *h,int *t)
+{
+  int element;
+  printf("Enter the element");
+  scanf("%d", &element);
+  if(*h==-1 && *t==-1)
+  {
+    *t++;
+    *h++;
+  }
+  else
+    *t=((*t)+1)%MAX_SIZE;
+  buffer[*t]=element;
+  printf("Elelemt inserted ");
+  return element;
+}
+int del(int buffer[],int *h,int *t)
+{
+  int element;
+  element=buffer[*h];
+  *h=((*h)+1)%MAX_SIZE;
+    printf("Element deleted ");
+  if(*h==(*t+1)%MAX_SIZE)
+    *h=*t=-1;
+  return element;
+}
+void display(int buffer[],int h,int t)
+{
+  printf("Rint bufffer: ");
+  if(!check_empty(h,t))
+  {
+    int i=h;
+    while(1)
+    {
+        printf("%d", buffer[i]);
+      if(i==t)
+        break;
+      i=(i+1)%MAX_SIZE;
+    }
+  }
+  else
+    printf("Empty");
+}

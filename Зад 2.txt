@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+void Reverse(char* ptr) {
+
+
+int i = 0;
+while(*(ptr+i) != '\0') {
+    i++;
+}
+i--;
+
+char c;
+
+for(int j = 0; j <= i / 2; j++) {
+
+    c = *(ptr + j);
+
+    *(ptr+j) = *(ptr+(i-j));
+    *(ptr+(i-j)) = c;
+}
+
+for(int j = 0; j <= i+1; j++) {
+        if(*(ptr+j) == 0) {
+            printf("\\0");
+        } else {
+    printf("%c", *(ptr+j));
+        }
+}
+
+
+
+}
+int main(){
+
+    char str[] = "This is a test\0";
+    Reverse(str);
+
+
+
+
+
+
+    return 0;
+}
